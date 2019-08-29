@@ -1,30 +1,142 @@
 @import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
 
+@keyframes crossout {
+  from {
+    transform: translate(-50%, -50%) scaleX(0)
+  }
+  to {
+    transform: translate(-50%, -50%) scaleX(1)
+  }
+}
+
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Lato', Arial, sans-serif;
+  color: #3D3D3D;
+  background-color: #eee;
 }
 
-.todos {
-  color: #333;
+h1 {
+  margin-bottom: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+nav {
+  margin: 10px;
+}
+
+.container {
+  text-align: center;
+}
+
+.App {
   width: 600px;
   margin: auto;
+}
+
+header {
+  text-align: center;
+}
+
+
+form {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  border: 2px solid #3D3D3D;
+  border-radius: 20px;
+
+  input, button {
+    border: none;
+    padding: 5px 20px;
+  }
+
+  input {
+    flex: 0.8;
+    background-color: white;
+    border-radius: 20px 0 0 20px;
+    outline: none;
+  }
+
+  button {
+    font-size: 1.0em;
+    font-weight: 700;
+    flex: 0.2;
+    color: white;
+    background-color: #9D9CA1;
+    border-left: 2px solid #3D3D3D;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+    transition-duration: .1s;
+    outline: none;
+
+    &:hover {
+      color: #3D3D3D;
+      background-color: #FFDE3B;
+    }
+  }
+}
+
+
+.todos {
+  color: #3D3D3D;
 
   .todo-item {
+    display: flex;
+    justify-content: space-between;
     margin: 5px auto;
-    padding: 5px 10px;
-    background-color: #eee;
-    border: 2px solid #333;
-    border-radius: 10px;
+    padding: 0 20px;
+    background-color: #FFCA0A;
+    border: 2px solid #3D3D3D;
+    border-radius: 20px;
     text-decoration: none;
     cursor: pointer;
+    text-transform: uppercase;
+    transition-duration: .3s;
+
+    &:hover {
+      background-color: #FFDE3B;
+    }
   }
 
   .completed {
-    text-decoration: line-through;
-    color: #666;
+    color: #9D9CA1;
+    border-color: #9D9CA1;
+    background-color: #FFDE3B;
+    position: relative;
+
+    &:after {
+      content: '';
+      display: block;
+      height: 2px;
+      border-radius: 1px;
+      width: 98%;
+      position: absolute;
+      background-color: #9D9CA1;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation-name: crossout;
+      animation-duration: 0.1s;
+      animation-timing-function: ease-in;
+    }
+
+    &:hover {
+      background-color: #FFCA0A;
+      border-color: #3D3D3D;
+    }
+  }
+
+  .fa-trash-alt {
+    &:hover {
+      color: #ff3D3D;
+      z-index: 2;
+    }
   }
 }
-
