@@ -7,7 +7,7 @@ import ToDoItem from "./ToDoItem";
 
 class Todos extends Component {
     componentDidMount() {
-        this.props.fetchTodos();
+        this.props.todos.length === 0 && this.props.fetchTodos();
     }
 
     shouldComponentUpdate(nextProps) {
