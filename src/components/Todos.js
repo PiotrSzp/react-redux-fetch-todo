@@ -1,8 +1,22 @@
 import React, { Component } from 'react';
-import ToDoItem from "./ToDoItem";
+import { connect } from 'react-redux';
+import { fetchTodos } from "../actions/todoActions";
 import PropTypes from 'prop-types';
 
+import ToDoItem from "./ToDoItem";
+
 class Todos extends Component {
+    componentDidMount() {
+        this.props.fetchTodos();
+    }
+
+    shouldComponentUpdate(nextProps) {
+        if (nextProps.newTodo) {
+            this.props.todos.unshift(nextProps.newTodo)
+        }
+        return !!nextProps.newTodo;
+    }
+
     render() {
         return (
             <section className={ 'todos' }>
@@ -10,8 +24,6 @@ class Todos extends Component {
                     <ToDoItem
                         key={ todo.id }
                         todo={ todo }
-                        toggleComplete={ this.props.toggleComplete }
-                        delTodo={ this.props.delTodo }
                     />) }
             </section>
         );
@@ -21,8 +33,14 @@ class Todos extends Component {
 // PROP TYPES
 Todos.propTypes = {
     todos: PropTypes.array.isRequired,
-    toggleComplete: PropTypes.func.isRequired,
-    delTodo: PropTypes.func.isRequired,
+    fetchTodos: PropTypes.func.isRequired,
+    newTodo: PropTypes.object,
 };
 
-export default Todos;
+// MAP STATE TO PROPS
+const mapStateToProps = state => ({
+    todos: state.todos.todosList,
+    newTodo: state.todos.newTodo,
+});
+
+export default connect(mapStateToProps, { fetchTodos })(Todos);

@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
+import PropTypes from 'prop-types';
+import { addTodo } from "../actions/todoActions";
 
 class AddTodo extends Component {
     state = {
@@ -12,9 +15,13 @@ class AddTodo extends Component {
         });
     };
 
-    onClick = e => {
+    onSubmit = e => {
         e.preventDefault();
-        this.props.addTodo(this.state.title);
+
+        if (this.state.title.trim().length > 0) {
+            this.props.addTodo(this.state.title)
+        }
+
         this.setState({
             title: ''
         })
@@ -22,7 +29,7 @@ class AddTodo extends Component {
 
     render() {
         return (
-            <form>
+            <form onSubmit={ this.onSubmit }>
                 <input
                     type='text'
                     name='title'
@@ -33,7 +40,6 @@ class AddTodo extends Component {
                 <button
                     type='submit'
                     name='submit'
-                    onClick={ this.onClick }
                 >
                     ADD TASK
                 </button>
@@ -42,4 +48,8 @@ class AddTodo extends Component {
     }
 }
 
-export default AddTodo;
+AddTodo.propTypes = {
+    addTodo: PropTypes.func.isRequired
+};
+
+export default connect(null, { addTodo })(AddTodo);
