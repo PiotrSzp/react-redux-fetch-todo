@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux'
+import { toggleTodo, delTodo } from "../actions/todoActions";
 
 class ToDoItem extends Component {
-    toggleComplete = (e) => {
+    toggleTodo = (e) => {
         e.preventDefault();
 
-        if (typeof this.props.toggleComplete === 'function') {
-            this.props.toggleComplete(this.props.todo.id)
+        if (typeof this.props.toggleTodo === 'function') {
+            this.props.toggleTodo(this.props.todo)
         }
     };
 
@@ -19,8 +21,8 @@ class ToDoItem extends Component {
     render() {
         return (
             <div className={ this.props.todo.completed ? 'todo-item completed' : 'todo-item' }
-                 onClick={ this.toggleComplete }>
-                <p>{ this.props.todo.title }</p><p className="far fa-trash-alt" onClick={ this.delTodo }></p>
+                 onClick={ this.toggleTodo }>
+                <p>{ this.props.todo.title }</p><i className="far fa-trash-alt" onClick={ this.delTodo } />
             </div>
         );
     }
@@ -30,8 +32,8 @@ class ToDoItem extends Component {
 // PROP TYPES
 ToDoItem.propTypes = {
     todo: PropTypes.object.isRequired,
-    toggleComplete: PropTypes.func.isRequired,
-    delTodo: PropTypes.func.isRequired
+    toggleTodo: PropTypes.func.isRequired,
+    delTodo: PropTypes.func.isRequired,
 };
 
-export default ToDoItem;
+export default connect(null, { toggleTodo, delTodo })(ToDoItem);

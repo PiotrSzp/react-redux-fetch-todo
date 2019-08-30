@@ -36,8 +36,9 @@ nav {
 }
 
 .App {
-  width: 600px;
+  max-width: 600px;
   margin: auto;
+  padding: 0 20px;
 }
 
 header {
@@ -68,8 +69,8 @@ form {
     font-size: 1.0em;
     font-weight: 700;
     flex: 0.2;
-    color: white;
-    background-color: #9D9CA1;
+    color: #3D3D3D;
+    background-color: lighten(#9D9CA1, 10%);
     border-left: 2px solid #3D3D3D;
     border-radius: 0 20px 20px 0;
     cursor: pointer;
@@ -90,6 +91,7 @@ form {
   .todo-item {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin: 5px auto;
     padding: 0 20px;
     background-color: #FFCA0A;
