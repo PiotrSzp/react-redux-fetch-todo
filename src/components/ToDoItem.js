@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import { toggleTodo, delTodo } from "../actions/todoActions";
 
+
 class ToDoItem extends Component {
     toggleTodo = (e) => {
         e.preventDefault();
 
+
         if (typeof this.props.toggleTodo === 'function') {
-            this.props.toggleTodo(this.props.todo)
+            this.props.toggleTodo(this.props.todo);
         }
     };
 

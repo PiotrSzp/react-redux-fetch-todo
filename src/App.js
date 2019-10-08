@@ -10,7 +10,6 @@ import Header from "./components/layout/Header";
 import About from "./components/pages/About";
 import AddTodo from "./components/AddTodo";
 
-
 class App extends Component {
     render() {
         return (
