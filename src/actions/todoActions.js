@@ -12,7 +12,7 @@ export const fetchTodos = () => dispatch => {
 };
 
 export const addTodo = todoTitle => dispatch => {
-    fetch('http://jsonplaceholder.typicode.com/todos', {
+    fetch('https://jsonplaceholder.typicode.com/todos', {
         method: 'POST',
         headers: {
             'content-type': 'application/json; charset=UTF-8'
@@ -27,7 +27,7 @@ export const addTodo = todoTitle => dispatch => {
 };
 
 export const toggleTodo = todo => dispatch => {
-    fetch(`http://jsonplaceholder.typicode.com/todos/${ todo.id }`, {
+    fetch(`https://jsonplaceholder.typicode.com/todos/${ todo.id }`, {
         method: 'PATCH',
         headers: {
             'content-type': 'application/json; charset=UTF-8'
@@ -42,7 +42,7 @@ export const toggleTodo = todo => dispatch => {
 };
 
 export const delTodo = todoId => dispatch => {
-    fetch(`http://jsonplaceholder.typicode.com/todos/${ todoId }`, {
+    fetch(`https://jsonplaceholder.typicode.com/todos/${ todoId }`, {
         method: 'DELETE',
     })
         .then(res => res.json())
